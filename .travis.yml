@@ -9,3 +9,16 @@ before_install:
 
 script:
   - docker run -e CI=true okkiman1/docker-react2 npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-west-3'
+  app: 'lars-docker-react2'
+  env: 'Larsdockerreact2-env'
+  bucket_name: 'elasticbeanstalk-eu-west-3-281107313981'
+  bucket_path: 'lars-docker-react2'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  
